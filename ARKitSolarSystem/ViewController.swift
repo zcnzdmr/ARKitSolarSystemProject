@@ -19,14 +19,24 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the view's delegate
         sceneView.delegate = self
         
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+        let world = SCNSphere(radius: 0.5) // Burda bir küre şeklini yani geometrisin verdik.
         
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let worldmaterial = SCNMaterial() // Burda önce materyal oluşturuyoruz ki bu texture sonra buna bir texture yani image vereceğiz.
         
-        // Set the scene to the view
-        sceneView.scene = scene
+        worldmaterial.diffuse.contents = UIImage(named: "art.scnassets/sun.png") // Burda materyalimize texture'ımızı veriyoruz.
+        
+        world.materials = [worldmaterial] // world 3D şekli küresi bu materyal ile kaplansın texture'ı bu olsun diyorum.
+        
+        let node = SCNNode()
+        
+        node.position = SCNVector3(x: 0.1, y: 0.1, z: -0.5) //
+        
+        node.geometry = world
+        
+        sceneView.scene.rootNode.addChildNode(node)
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
