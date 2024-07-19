@@ -36,6 +36,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         sceneView.scene.rootNode.addChildNode(sun)
         
+        let volcan = createSphere(radius: 1, texture: "volcanic", position: SCNVector3(x: 1.9, y: 1, z: 0.3))
+        
+        sceneView.scene.rootNode.addChildNode(volcan)
+        
         sceneView.automaticallyUpdatesLighting = true // ARKit kendisi bulunulan ortama göre objeclerin ışığını ayarlar onları görünür kılar
         
         
