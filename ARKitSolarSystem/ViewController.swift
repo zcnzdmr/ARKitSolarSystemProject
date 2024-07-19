@@ -38,6 +38,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         sceneView.automaticallyUpdatesLighting = true // ARKit kendisi bulunulan ortama göre objeclerin ışığını ayarlar onları görünür kılar
         
+        
     }
     
     func createSphere(radius:CGFloat, texture: String,position: SCNVector3 ) -> SCNNode { // fonksiyon ile node küre oluşturmayı otomatikleştirdik.
