@@ -20,8 +20,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
         let world = createSphere(radius: 0.5, texture: "world", position: SCNVector3(x: 0, y: 0.5, z: -0.1))
-        
+    
         sceneView.scene.rootNode.addChildNode(world)
+        
+        
+        let mars = createSphere(radius: 3, texture: "Mars", position: SCNVector3(x: 0.5, y: 1, z: 0))
+        
+        sceneView.scene.rootNode.addChildNode(mars)
+        
+        let venus = createSphere(radius: 0.2, texture: "Venus", position: SCNVector3(x: 1, y: 1.1, z: 0.1))
+        
+        sceneView.scene.rootNode.addChildNode(venus)
+        
+        let sun = createSphere(radius: 6, texture: "sun", position: SCNVector3(x: 1.9, y: 1, z: 0.3))
+        
+        sceneView.scene.rootNode.addChildNode(sun)
         
         sceneView.automaticallyUpdatesLighting = true // ARKit kendisi bulunulan ortama göre objeclerin ışığını ayarlar onları görünür kılar
         
