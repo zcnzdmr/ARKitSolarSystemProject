@@ -19,24 +19,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the view's delegate
         sceneView.delegate = self
         
-        let world = SCNSphere(radius: 0.5) // Burda bir küre şeklini yani geometrisin verdik.
+        let world = createSphere(radius: 0.5, texture: "world", position: SCNVector3(x: 0, y: 0.5, z: -0.1))
+        
+        sceneView.scene.rootNode.addChildNode(world)
+        
+        sceneView.automaticallyUpdatesLighting = true // ARKit kendisi bulunulan ortama göre objeclerin ışığını ayarlar onları görünür kılar
+        
+    }
+    
+    func createSphere(radius:CGFloat, texture: String,position: SCNVector3 ) -> SCNNode { // fonksiyon ile node küre oluşturmayı otomatikleştirdik.
+        
+        let sphere = SCNSphere(radius: radius) // Burda bir küre şeklini yani geometrisin verdik.
         
         let worldmaterial = SCNMaterial() // Burda önce materyal oluşturuyoruz ki bu texture sonra buna bir texture yani image vereceğiz.
         
-        worldmaterial.diffuse.contents = UIImage(named: "art.scnassets/sun.png") // Burda materyalimize texture'ımızı veriyoruz.
+        worldmaterial.diffuse.contents = UIImage(named: "art.scnassets/\(texture)") // Burda materyalimize texture'ımızı veriyoruz.
         
-        world.materials = [worldmaterial] // world 3D şekli küresi bu materyal ile kaplansın texture'ı bu olsun diyorum.
+        sphere.materials = [worldmaterial] // world 3D şekli küresi bu materyal ile kaplansın texture'ı bu olsun diyorum.
         
         let node = SCNNode()
         
-        node.position = SCNVector3(x: 0.1, y: 0.1, z: -0.5) //
+        node.position = position//
         
-        node.geometry = world
+        node.geometry = sphere
         
-        sceneView.scene.rootNode.addChildNode(node)
+
         
-        
-        
+        return node
     }
     
     override func viewWillAppear(_ animated: Bool) {
